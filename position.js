@@ -1,36 +1,27 @@
-/** @type {HTMLElement}*/
-var posElt;
-/** @type {HTMLElement} */
-var posLinkElt;
-var viewLat;
-var viewLong;
+var posElt = document.getElementById('Pos');
+var posLinkElt = document.querySelector('#PosLink > a');
+var viewLat = document.getElementById('lat');
+var viewLong = document.getElementById('long');
 
 
 window.addEventListener('load', function(){
-    posElt = document.getElementById('Pos');
-    posLinkElt = document.querySelector('#PosLink > a');
-    viewLat = document.getElementById('lat');
-    viewLong = document.getElementById('long');
+    
+    this.setInterval(function(){
         navigator.geolocation.getCurrentPosition(geoposOK, geoposKO);
+    }, 500);
 });
 
-/** @param {GeolocationPosition} pos */
-function geoposOK(pos) {
-    //Obtenemos latitud y longitud
+
+const geoposOK = (pos) => {
     var lat = pos.coords.latitude;
     var long = pos.coords.longitude;
-    //Mostramos la posición
-    viewLat.innerText += ` ${lat}`;
-    viewLong.innerText += ` ${long}`;
-    console.log(`${lat}`);
-    console.log(`${long}`);
-    //generamos enlace a la posición
+    viewLat.innerText = ` ${lat}`;
+    viewLong.innerText = ` ${long}`;
     posLinkElt.href = `https://maps.google.com/?q=${lat},${long}`;
     posLinkElt.textContent = 'Mostrar tu posición en un mapa';
 }
 
-/** @param {GeolocationPositionError} err */
-function geoposKO(err) {
+const geoposKO = (err) => {
     console.warn(err.message);
     let msg;
     switch(err.code) {

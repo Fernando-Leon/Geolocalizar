@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determinar posición del usuario actual con la API de HTML5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-screen h-screen grid justify-center content-center bg-gray-800 text-white">
+        <p class="p-2">La posicion es: 
+            <div class="p-2" id="Pos">
+                <p id="lat">Latitud: </p>
+                <p id="long">Longitud: </p>
+            </div>
+        </p>
+        <p class="p-2" id="PosLink">
+            <a class="underline" target="_blank"></a>
+        </p>
+    </div>
+    <script src="position.js"></script>
+</body>
+</html>
